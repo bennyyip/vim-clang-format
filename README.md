@@ -1,5 +1,7 @@
 Format your Python code
-=======================================
+=======================
+
+This plugin is based on https://github.com/rhysd/vim-clang-format. Thank @rhysd!
 
 ## Requirements
 
@@ -67,7 +69,7 @@ option is not comptabile with Vim's `textwidth` feature. You must set
 ## Vimrc Example
 
 ```vim
-" map to <Leader>cf in C++ code
+" map to <Leader>cf in python code
 autocmd FileType python nnoremap <buffer><Leader>cf :<C-u>Yapf<CR>
 autocmd FileType python vnoremap <buffer><Leader>cf :Yapf<CR>
 " if you install vim-operator-user
