@@ -3,7 +3,7 @@ function! s:is_empty_region(begin, end)
 endfunction
 
 function! s:restore_screen_pos()
-    let line_diff = line('w0') - g:operator#clang_format#save_screen_pos
+    let line_diff = line('w0') - g:operator#yapf#save_screen_pos
     if line_diff > 0
         execute 'silent normal!' line_diff."\<C-y>"
     elseif line_diff < 0
@@ -11,21 +11,21 @@ function! s:restore_screen_pos()
     endif
 endfunction
 
-function! operator#clang_format#do(motion_wise)
+function! operator#yapf#do(motion_wise)
     if s:is_empty_region(getpos("'["), getpos("']"))
         return
     endif
 
-    call clang_format#replace(getpos("'[")[1], getpos("']")[1])
+    call yapf#replace(getpos("'[")[1], getpos("']")[1])
 
     " Do not move cursor and screen
-    if exists('g:operator#clang_format#save_pos')
-        call setpos('.', g:operator#clang_format#save_pos)
-        unlet g:operator#clang_format#save_pos
+    if exists('g:operator#yapf#save_pos')
+        call setpos('.', g:operator#yapf#save_pos)
+        unlet g:operator#yapf#save_pos
     endif
 
-    if exists('g:operator#clang_format#save_screen_pos')
+    if exists('g:operator#yapf#save_screen_pos')
         call s:restore_screen_pos()
-        unlet g:operator#clang_format#save_screen_pos
+        unlet g:operator#yapf#save_screen_pos
     endif
 endfunction
